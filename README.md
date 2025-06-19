@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Step Navigation Component
 
-## Getting Started
+A modern, interactive step navigation component built with Next.js, TypeScript, and Tailwind CSS. This component provides a sleek interface for managing multi-step processes with drag-and-drop functionality and context menu actions.
 
-First, run the development server:
+## Features
 
+- **Drag and Drop**: Reorder steps intuitively using drag-and-drop functionality
+- **Context Menu**: Right-click on active steps to access additional actions:
+  - Set as first page
+  - Rename step
+  - Copy step
+  - Duplicate step
+  - Delete step
+- **Interactive Elements**:
+  - Add new steps between existing ones
+  - Add new pages at the end
+  - Visual indicators for active and inactive states
+- **Modern Styling**: Clean, modern design with smooth transitions
+
+## Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/yourusername/step-navigation.git
+cd step-navigation
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+pnpm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Run the development server:
+```bash
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## Learn More
+## Usage
 
-To learn more about Next.js, take a look at the following resources:
+```tsx
+import StepNavigation from "@/components/StepNavigation";
+import { IStep } from "@/types";
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+// Define your steps
+const steps: IStep[] = [
+  { id: "step1", title: "Step 1", isActive: true },
+  { id: "step2", title: "Step 2", isActive: false },
+];
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+// Use the component
+<StepNavigation
+  steps={steps}
+  onSelectStep={(id) => {}}
+  onSetStepAsFirst={(id) => {}}
+  onRenameStep={(id, title) => {}}
+  onCopyStep={(id) => {}}
+  onDuplicateStep={(id) => {}}
+  onDeleteStep={(id) => {}}
+  onAddPage={() => {}}
+  onReorderSteps={(newSteps) => {}}
+  onAddBetween={(index) => {}}
+/>
+```
 
-## Deploy on Vercel
+## Props
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Prop | Type | Description |
+|------|------|-------------|
+| steps | IStep[] | Array of step objects |
+| onSelectStep | (id: string) => void | Called when a step is clicked |
+| onSetStepAsFirst | (id: string) => void | Called when setting a step as first |
+| onRenameStep | (id: string, title: string) => void | Called when renaming a step |
+| onCopyStep | (id: string) => void | Called when copying a step |
+| onDuplicateStep | (id: string) => void | Called when duplicating a step |
+| onDeleteStep | (id: string) => void | Called when deleting a step |
+| onAddPage | () => void | Called when adding a new page |
+| onReorderSteps | (steps: IStep[]) => void | Called after drag and drop reordering |
+| onAddBetween | (index: number) => void | Called when adding a step between existing ones |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Technologies
+
+- [Next.js](https://nextjs.org/) - React framework
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [@hello-pangea/dnd](https://github.com/hello-pangea/dnd) - Drag and drop functionality
+- [Lucide React](https://lucide.dev/) - Icons
+- [Framer Motion](https://www.framer.com/motion/) - Animations
+
+## Development
+
+- Run development server: `pnpm dev`
+- Build for production: `pnpm build`
+- Run production build: `pnpm start`
+- Run linter: `pnpm lint`
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
