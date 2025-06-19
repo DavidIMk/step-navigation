@@ -21,7 +21,7 @@ const AddPage: FC<AddPageProps> = ({ onClick }) => {
         transition-colors duration-200
         select-none
         text-[#1A1A1A]
-        pointer-events-none
+        cursor-pointer
       `}
     >
       <span className="text-lg leading-none">+</span>
